@@ -1,3 +1,9 @@
 *~
 *.pyc
 *.class
+*.bib
+*.log
+*.aux
+*.toc
+*.out
+main.pdf
