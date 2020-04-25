@@ -7,6 +7,21 @@ The repository is structured in different directories, containing different part
 - *documentation*: it contains the LaTeX files for the documentation.
 - *snake*: it contains the `java` code of the game
 
+
+## Tips and tricks for running it
+
+### Java code
+
+First of all, the code has to be compiled first, no executable or built files are added to this repository.To compile the code:
+```java
+cd snake/
+javac -d . *.java
+```
+Then, to run it:
+```java
+java ps.SnakeApp2D
+```
+
 ## Authors and references
 
 The code has been developed by Paolo Sabatini. Any use of the code for any purpose should contain the appropriate reference to this project.
