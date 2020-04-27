@@ -14,11 +14,12 @@ public class SnakeApp2D extends JFrame {
 
         add(new Board());
 
-        setSize(400,400);
+	setResizable(false);
+	pack();
 
-        setTitle("SnakeApp2D - Paolo Sabatini Prod.");
+	setTitle("SnakeApp2D - Paolo Sabatini Prod.");
+	setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
     }    
     
     public static void main(String[] args) {
