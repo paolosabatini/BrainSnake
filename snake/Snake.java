@@ -11,26 +11,28 @@ public class Snake extends Sprite {
 
     
     private Color snakeColor = new Color (252, 252, 252);
+    private List<SnakeBlock> blocks;
     Grid grid;
 
     
     public Snake (int x, int y, Grid grid){
 	super(x,y);
-	this.grid = grid; 
+	this.grid = grid;
+	blocks = new ArrayList<>();
+	blocks.add ( new SnakeBlock (x,y,grid) );
+	blocks.add (new SnakeBlock (x,y-grid.getGridSizeY(),grid) );
+
     }
 
 
 
     public void drawSnake (Graphics2D g2d){
-	g2d.setColor (snakeColor);
-	int round_h = (int) grid.getGridSizeY();
-	int round_r = (int) 0.2*grid.getGridSizeY();
 
-	g2d.fillRoundRect(x,y,
-			  grid.getGridSizeX(),
-			  grid.getGridSizeY(),
-			  round_h,
-			  round_r);
+	for (SnakeBlock b : blocks ){
+	    
+	    b.drawSnakeBlock(g2d);
+
+	}
 	
     }
 }
