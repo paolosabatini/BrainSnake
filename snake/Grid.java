@@ -42,5 +42,46 @@ public class Grid {
 
     }
 
+    public int getGridBinX (int x){
+	return x / GRID_SIZE_X;
+    }
+
+    public int getGridBinY (int y){
+	return y / GRID_SIZE_Y;
+    }
+    
+    public int getGridBinCenterX (int x){
+	return x + (int)(GRID_SIZE_X/2.);
+    }
+
+    public int getGridBinCenterY (int y){
+	return y + (int)(GRID_SIZE_Y/2.);
+    }
+
+    public int getGridCenteredX (int x){
+	return getGridBinX(x)*GRID_SIZE_X + (int)(GRID_SIZE_X/2.);
+    }
+
+    public int getGridCenteredY (int y){
+	return getGridBinY (y)*GRID_SIZE_X+ (int)(GRID_SIZE_Y/2.);
+    }
+
+    
+    public int getGridBinEdgeX (int x){
+	return x*GRID_SIZE_X;
+    }
+
+    public int getGridBinEdgeY (int y){
+	return y*GRID_SIZE_Y;
+    }
+
+    public int getGridAtEdgeX (int x){
+	return getGridBinX(x)*GRID_SIZE_X;
+    }
+
+    public int getGridAtEdgeY (int y){
+	return getGridBinY(y)*GRID_SIZE_Y;
+    }
+
 
 }
