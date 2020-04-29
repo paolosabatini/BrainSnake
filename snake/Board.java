@@ -1,6 +1,6 @@
 package ps;
     
-// import java.awt.BasicStroke;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -31,15 +31,17 @@ public class Board extends JPanel implements ActionListener {
     protected int ISNAKE_X = 300;
     protected int ISNAKE_Y = 200;
         
+
     protected int B_WIDTH = 400;
     protected int B_HEIGHT = 400;
+    protected int TOTAL_WIDTH = (int)(400*1.25);
     protected int GRID_N = 20;
     protected int GRID_WIDTH = B_WIDTH / GRID_N;
     protected int GRID_HEIGHT = B_HEIGHT / GRID_N;
 
     protected boolean inGame;
     protected int Score;
-    protected int DELAY = 200;
+    protected int DELAY = 150;
     protected static boolean VERBOSE = false;
     
     public Board () {
@@ -53,7 +55,7 @@ public class Board extends JPanel implements ActionListener {
 	setFocusable(true);
         setBackground(Color.lightGray);
 
-	setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+	setPreferredSize(new Dimension(TOTAL_WIDTH, B_HEIGHT));
 
 	grid = new Grid (GRID_WIDTH, GRID_HEIGHT, B_WIDTH, B_HEIGHT);
 	if (VERBOSE)
@@ -76,10 +78,8 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
 	
-	if (!inGame) timer.stop();
-	
-    	if (VERBOSE)
-	    System.out.println ("printato in action");
+	if (VERBOSE)
+	    System.out.println ("printed in action");
 
 	updateSnake ();
 
@@ -88,6 +88,7 @@ public class Board extends JPanel implements ActionListener {
 
 	repaint();
 
+	if (!inGame) timer.stop();
 	    
 	snake.ALREADY_PRESSED=false;
     }
@@ -151,12 +152,12 @@ public class Board extends JPanel implements ActionListener {
 	if (inGame){
 	    drawObjects (g);
 
-	    drawScore (g);
+	    drawScore ((Graphics2D)g);
 	}
 	else {
 	    drawObjects (g);
 
-	    drawScore (g);
+	    drawScore ((Graphics2D)g);
 
 	    drawGameOver (g);
 	}
@@ -176,15 +177,41 @@ public class Board extends JPanel implements ActionListener {
 	
     }
 
-    public void drawScore (Graphics g){
-	g.setColor(Color.BLACK);
-        g.drawString("Score: " + Score, 5, 15);
+    public void drawScore (Graphics2D g2d){
+	// g.setColor(Color.BLACK);
+        // g.drawString("Score: " + Score, 5, 15);
+	
+	double pad_offset = 0.02;
+	double pad_height_fraction = 0.4;
+	g2d.setColor (Color.darkGray);
+	g2d.setStroke(new BasicStroke(2));
+	g2d.drawRect ((int) (B_WIDTH*(1+pad_offset) ) ,
+		      (int) (B_HEIGHT*(0.5*pad_offset)) ,
+		      (int) ((TOTAL_WIDTH-B_WIDTH)-1.5*pad_offset*B_WIDTH),
+		      (int) (B_HEIGHT*(pad_height_fraction)) );
+	
+	g2d.setColor(Color.BLACK);
+        Font normal = new Font("Helvetica", Font.BOLD, 14);
+	g2d.setFont (normal);
+        g2d.drawString("Score",
+		       (int) (B_WIDTH+0.25*(TOTAL_WIDTH-B_WIDTH)),
+		       (int) (2.5*B_HEIGHT*pad_offset) );
+
+	
+	g2d.setColor(Color.RED);
+        Font large = new Font("Helvetica", Font.BOLD, 25);
+	g2d.setFont (large);
+        g2d.drawString(""+(Score),
+		       (int) (B_WIDTH+0.4*(TOTAL_WIDTH-B_WIDTH)),
+		       (int) (0.5*B_HEIGHT*(pad_height_fraction)+ B_HEIGHT*(0.5*pad_offset) ) );
+
+
     }
 
     private void drawGameOver(Graphics g) {
 	
-        String msg = "Game Over";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
+        String msg = "GAME OVER";
+        Font small = new Font("Helvetica", Font.BOLD, 50);
         FontMetrics fm = getFontMetrics(small);
 	
         g.setColor(Color.RED);
