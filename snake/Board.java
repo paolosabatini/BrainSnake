@@ -15,6 +15,8 @@ import javax.swing.Timer;
 import java.lang.Math;
 import java.util.Random;
 import java.awt.Rectangle;
+import java.awt.Font;
+import java.awt.FontMetrics;
 
 
 public class Board extends JPanel implements ActionListener {
@@ -36,6 +38,7 @@ public class Board extends JPanel implements ActionListener {
     protected int GRID_HEIGHT = B_HEIGHT / GRID_N;
 
     boolean inGame;
+    int Score;
     protected int DELAY = 200;
     
     public Board () {
@@ -59,6 +62,7 @@ public class Board extends JPanel implements ActionListener {
 			   grid.getGridAtEdgeY (ISNAKE_Y), grid);
 	
 	inGame = true;
+	Score = 0;
 	timer = new Timer(DELAY, this);
         timer.start();
     }
@@ -69,16 +73,18 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+	
+	if (!inGame) timer.stop();
+	
     	System.out.println ("printato in action");
 	updateSnake ();
 
 	checkEating ();
 	inGame = checkCollisions ();
 
-	if (inGame)  repaint();
-	else timer.stop();
-	
-	
+	repaint();
+
+	    
 	snake.ALREADY_PRESSED=false;
     }
 
@@ -96,7 +102,7 @@ public class Board extends JPanel implements ActionListener {
        
 	
 	if (snake_head.intersects (ap_rect)){
-
+	    
 	    snake.addApple (new Apple (apple.x,apple.y,grid));
 	    
 	    System.out.println ("==> APPLE EATEN!");
@@ -112,7 +118,8 @@ public class Board extends JPanel implements ActionListener {
 		
 		if ( !snake.isIn( ap_rect ) ) break;
 	    }
-	    
+
+	    Score += 1;
 	}
     }
 
@@ -136,9 +143,18 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-	drawObjects (g);
+	if (inGame){
+	    drawObjects (g);
 
-	drawScore ();
+	    drawScore (g);
+	}
+	else {
+	    drawObjects (g);
+
+	    drawScore (g);
+
+	    drawGameOver (g);
+	}
 	
 	Toolkit.getDefaultToolkit().sync();
     }
@@ -155,15 +171,23 @@ public class Board extends JPanel implements ActionListener {
 	
     }
 
-    public void drawScore (){
-
-	
-
-	
-	
+    public void drawScore (Graphics g){
+	g.setColor(Color.BLACK);
+        g.drawString("Score: " + Score, 5, 15);
     }
 
-
+    private void drawGameOver(Graphics g) {
+	
+        String msg = "Game Over";
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = getFontMetrics(small);
+	
+        g.setColor(Color.RED);
+        g.setFont(small);
+        g.drawString(msg, (B_WIDTH - fm.stringWidth(msg)) / 2,
+		     B_HEIGHT / 2);
+    }
+    
 
     private class TAdapter extends KeyAdapter {
 
