@@ -41,21 +41,23 @@ public class Snake extends Sprite {
 	}
 	int x_last = blocks_backup.get (blocks_backup.size()-1).getX();
 	int y_last = blocks_backup.get (blocks_backup.size()-1).getY();
-	System.out.println ("> Moving the snake blocks:");
+	if (Board.isVerbose()) System.out.println ("> Moving the snake blocks:");
 	for (int i = 1; i < blocks_backup.size(); i++){
-	    System.out.println ("  > from "+blocks.get (i).getX()+" -> "+blocks_backup.get (i-1).getX()+" , "+blocks.get (i).getY()+" -> "+blocks_backup.get (i-1).getY());
+	    if (Board.isVerbose())
+		System.out.println ("  > from "+blocks.get (i).getX()+" -> "+blocks_backup.get (i-1).getX()+" , "+blocks.get (i).getY()+" -> "+blocks_backup.get (i-1).getY());
 	    blocks.get (i).setX ( blocks_backup.get (i-1).getX() );
 	    blocks.get (i).setY ( blocks_backup.get (i-1).getY() );
 	}
 
-	System.out.println ("> Check if snake has to be extended");
+	if (Board.isVerbose()) System.out.println ("> Check if snake has to be extended");
 	int index_remove = -1;
 	int apple_counter=0;
 	for (Apple a : apples){
-	    System.out.println ("  apple x "+a.getX()+" y "+a.getY()+" last-block x "+x_last+" y "+y_last);
+	    if (Board.isVerbose())
+		System.out.println ("  apple x "+a.getX()+" y "+a.getY()+" last-block x "+x_last+" y "+y_last);
 	    if ((a.getX()==x_last) &&
 		(a.getY()==y_last)){
-		System.out.println ("  > adding block x "+a.getX()+" y "+a.getY());
+		if (Board.isVerbose()) System.out.println ("  > adding block x "+a.getX()+" y "+a.getY());
 		index_remove = apple_counter;
 		this.blocks.add (new SnakeBlock (a.getX(), a.getY(),grid));
 		break;
@@ -64,17 +66,19 @@ public class Snake extends Sprite {
 	}
 	if (index_remove>=0) apples.remove (index_remove);
 	
-	System.out.println ("> Head pre-move x "+this.x+" y "+this.y);
+	if (Board.isVerbose()) System.out.println ("> Head pre-move x "+this.x+" y "+this.y);
 	this.x += dx;
 	this.y += dy;
 	blocks.get (0).setX (this.x);
 	blocks.get (0).setY (this.y);
-	System.out.println ("> Head post-move x "+this.x+" y "+this.y);
+	if (Board.isVerbose()) System.out.println ("> Head post-move x "+this.x+" y "+this.y);
 
 
-	System.out.println ("> dx "+dx+" dy "+dy);
-	for (SnakeBlock b : blocks){
-	    System.out.println ("\t > x "+b.getX()+" y "+b.getY());
+	if (Board.isVerbose()) {
+	    System.out.println ("> dx "+dx+" dy "+dy);
+	    for (SnakeBlock b : blocks){
+		System.out.println ("\t > x "+b.getX()+" y "+b.getY());
+	    }
 	}
 
     }
@@ -86,10 +90,12 @@ public class Snake extends Sprite {
 	
         int key = e.getKeyCode();
 
-	System.out.println ("KEY PRESSED "+key);
-	System.out.println ("Velocity "+velocity);
-	
-        if (key == KeyEvent.VK_LEFT) {
+	if (Board.isVerbose()){
+	    System.out.println ("KEY PRESSED "+key);
+	    System.out.println ("Velocity "+velocity);
+	}
+
+	if (key == KeyEvent.VK_LEFT) {
 	    velocity = ( !velocity.equals ( grid.getRight() ) ) ? grid.getLeft() : velocity ;
         }
 	
@@ -105,7 +111,7 @@ public class Snake extends Sprite {
 	    velocity = ( !velocity.equals ( grid.getUp() ) ) ? grid.getDown() : velocity ;
         }
 
-	System.out.println (" ===> "+velocity);
+	if (Board.isVerbose()) System.out.println (" ===> "+velocity);
 	this.ALREADY_PRESSED = true;
     }
 

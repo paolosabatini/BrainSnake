@@ -20,7 +20,7 @@ import java.awt.FontMetrics;
 
 
 public class Board extends JPanel implements ActionListener {
-
+    
     private Snake snake;
     private Apple apple;
     private Grid grid;
@@ -37,9 +37,10 @@ public class Board extends JPanel implements ActionListener {
     protected int GRID_WIDTH = B_WIDTH / GRID_N;
     protected int GRID_HEIGHT = B_HEIGHT / GRID_N;
 
-    boolean inGame;
-    int Score;
+    protected boolean inGame;
+    protected int Score;
     protected int DELAY = 200;
+    protected static boolean VERBOSE = false;
     
     public Board () {
 	initBoard ();
@@ -55,7 +56,8 @@ public class Board extends JPanel implements ActionListener {
 	setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
 	grid = new Grid (GRID_WIDTH, GRID_HEIGHT, B_WIDTH, B_HEIGHT);
-	System.out.println("Position apple "+grid.getGridAtEdgeX (IAPPLE_X)+" "+grid.getGridAtEdgeY (IAPPLE_Y));
+	if (VERBOSE)
+	    System.out.println("Position apple "+grid.getGridAtEdgeX (IAPPLE_X)+" "+grid.getGridAtEdgeY (IAPPLE_Y));
 	apple = new Apple (grid.getGridAtEdgeX (IAPPLE_X),
 			   grid.getGridAtEdgeY (IAPPLE_Y), grid);
 	snake = new Snake (grid.getGridAtEdgeX (ISNAKE_X),
@@ -76,7 +78,9 @@ public class Board extends JPanel implements ActionListener {
 	
 	if (!inGame) timer.stop();
 	
-    	System.out.println ("printato in action");
+    	if (VERBOSE)
+	    System.out.println ("printato in action");
+
 	updateSnake ();
 
 	checkEating ();
@@ -105,17 +109,18 @@ public class Board extends JPanel implements ActionListener {
 	    
 	    snake.addApple (new Apple (apple.x,apple.y,grid));
 	    
-	    System.out.println ("==> APPLE EATEN!");
+	    if (VERBOSE) System.out.println ("==> APPLE EATEN!");
 	    while (true){
-		System.out.println ("    > extract new apple");
+		if (VERBOSE) System.out.println ("    > extract new apple");
 		int posx = grid.getGridBinEdgeX ((int)(Math.random()*GRID_N));
 		int posy = grid.getGridBinEdgeY ((int)(Math.random()*GRID_N));
 		apple.setX ( posx );
 		apple.setY ( posy );
 		ap_rect.setRect (posx, posy, grid.getGridSizeX(), grid.getGridSizeY() );
-		System.out.println ("    > posx "+posx+" y "+posy);
-		System.out.println ("    > intersect? "+snake.isIn( ap_rect ));
-		
+		if (VERBOSE){
+		    System.out.println ("    > posx "+posx+" y "+posy);
+		    System.out.println ("    > intersect? "+snake.isIn( ap_rect ));
+		}
 		if ( !snake.isIn( ap_rect ) ) break;
 	    }
 
@@ -202,5 +207,5 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-
+    public static boolean isVerbose() {return VERBOSE;}
 }
