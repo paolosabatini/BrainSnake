@@ -4,6 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Grid {
 
@@ -83,5 +85,40 @@ public class Grid {
 	return getGridBinY(y)*GRID_SIZE_Y;
     }
 
+    public ArrayList<Integer> getUp (){
+	ArrayList<Integer> vec_up =  new ArrayList<Integer>();
+	vec_up.add (1);
+	vec_up.add (0);
+	vec_up.add (0);
+	vec_up.add (0);
+	return (vec_up);
+    }
+
+    public ArrayList<Integer> getLeft (){
+	ArrayList<Integer> vec_left =  new ArrayList<Integer>();
+	vec_left.add (0);
+	vec_left.add (1);
+	vec_left.add (0);
+	vec_left.add (0);
+	return (vec_left);
+    }
+
+    public ArrayList<Integer> getDown (){
+	ArrayList<Integer> vec_down =  new ArrayList<Integer>();
+	vec_down.add (0);
+	vec_down.add (0);
+	vec_down.add (1);
+	vec_down.add (0);
+	return (vec_down);
+    }
+
+    public ArrayList<Integer> getRight (){
+	ArrayList<Integer> vec_right =  new ArrayList<Integer>();
+	vec_right.add (0);
+	vec_right.add (0);
+	vec_right.add (0);
+	vec_right.add (1);
+	return (vec_right);
+    }
 
 }
