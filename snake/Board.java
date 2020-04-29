@@ -12,6 +12,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
 import javax.swing.Timer;
+import java.lang.Math;
+import java.util.Random;
+import java.awt.Rectangle;
+
 
 public class Board extends JPanel implements ActionListener {
 
@@ -27,10 +31,11 @@ public class Board extends JPanel implements ActionListener {
         
     protected int B_WIDTH = 400;
     protected int B_HEIGHT = 400;
-    protected int GRID_WIDTH = B_WIDTH / 20;
-    protected int GRID_HEIGHT = B_HEIGHT / 20;
+    protected int GRID_N = 20;
+    protected int GRID_WIDTH = B_WIDTH / GRID_N;
+    protected int GRID_HEIGHT = B_HEIGHT / GRID_N;
 
-    protected int DELAY = 300;
+    protected int DELAY = 200;
     
     public Board () {
 	initBoard ();
@@ -66,6 +71,7 @@ public class Board extends JPanel implements ActionListener {
     	System.out.println ("printato in action");
 	updateSnake ();
 
+	checkEating ();
 
 	repaint();
 	snake.ALREADY_PRESSED=false;
@@ -74,6 +80,37 @@ public class Board extends JPanel implements ActionListener {
     public void updateSnake (){
 	snake.move();
     }
+
+    public void checkEating (){
+
+	Rectangle snake_head = new Rectangle();
+	snake_head.setRect (snake.x, snake.y, grid.getGridSizeX(), grid.getGridSizeY() );
+	Rectangle ap_rect = new Rectangle();
+	ap_rect.setRect (apple.x, apple.y, grid.getGridSizeX(), grid.getGridSizeY() );
+
+       
+	
+	if (snake_head.intersects (ap_rect)){
+
+	    snake.addApple (new Apple (apple.x,apple.y,grid));
+	    
+	    System.out.println ("==> APPLE EATEN!");
+	    while (true){
+		System.out.println ("    > extract new apple");
+		int posx = grid.getGridBinEdgeX ((int)(Math.random()*GRID_N));
+		int posy = grid.getGridBinEdgeY ((int)(Math.random()*GRID_N));
+		apple.setX ( posx );
+		apple.setY ( posy );
+		ap_rect.setRect (posx, posy, grid.getGridSizeX(), grid.getGridSizeY() );
+		System.out.println ("    > posx "+posx+" y "+posy);
+		System.out.println ("    > intersect? "+snake.isIn( ap_rect ));
+		
+		if ( !snake.isIn( ap_rect ) ) break;
+	    }
+	    
+	}
+    }
+
     
     @Override
     public void paintComponent(Graphics g) {
