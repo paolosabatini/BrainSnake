@@ -139,6 +139,22 @@ public class Snake extends Sprite {
 	return isin;
     }
 
+    
+    public boolean headIsIn (Rectangle r){
+
+	boolean isin = false;
+	for (int i = 1; i<blocks.size();i++){
+	    Rectangle b_r = new Rectangle();
+	    b_r.setRect(blocks.get(i).getX (), blocks.get(i).getY(),
+			grid.getGridSizeX(), grid.getGridSizeY());
+	    if (b_r.intersects (r)){
+		isin = true;
+		break;
+	    }
+	}
+	return isin;
+    }
+
     public void addApple (Apple a){
 	this.apples.add (a);
     }

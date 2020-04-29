@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Rectangle;
 
 public class Grid {
 
@@ -42,6 +43,16 @@ public class Grid {
 		     WINDOW_SIZE_X,
 		     WINDOW_SIZE_Y);
 
+    }
+
+    public Rectangle getBorders (){
+
+	Rectangle border = new Rectangle ();
+	border.setRect(0,0,
+		       WINDOW_SIZE_X,
+		       WINDOW_SIZE_Y);
+
+	return border;
     }
 
     public int getGridBinX (int x){

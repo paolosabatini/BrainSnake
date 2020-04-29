@@ -28,12 +28,12 @@ public class SnakeBlock extends Sprite {
 	int round_h = (int) grid.getGridSizeY();
 	int round_r = (int) 0.2*grid.getGridSizeY();
 
-	g2d.setColor (Color.BLACK);
-	g2d.setStroke(new BasicStroke(1));
-	g2d.drawRect(x,y,
-		     grid.getGridSizeX(),
-		     grid.getGridSizeY()
-		     );
+	// g2d.setColor (Color.BLACK);
+	// g2d.setStroke(new BasicStroke(1));
+	// g2d.drawRect(x,y,
+	// 	     grid.getGridSizeX(),
+	// 	     grid.getGridSizeY()
+	// 	     );
 	g2d.setColor (snakeColor);
 	g2d.fillRect(x,y,
 		     grid.getGridSizeX(),

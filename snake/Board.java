@@ -35,6 +35,7 @@ public class Board extends JPanel implements ActionListener {
     protected int GRID_WIDTH = B_WIDTH / GRID_N;
     protected int GRID_HEIGHT = B_HEIGHT / GRID_N;
 
+    boolean inGame;
     protected int DELAY = 200;
     
     public Board () {
@@ -57,7 +58,7 @@ public class Board extends JPanel implements ActionListener {
 	snake = new Snake (grid.getGridAtEdgeX (ISNAKE_X),
 			   grid.getGridAtEdgeY (ISNAKE_Y), grid);
 	
-
+	inGame = true;
 	timer = new Timer(DELAY, this);
         timer.start();
     }
@@ -72,8 +73,12 @@ public class Board extends JPanel implements ActionListener {
 	updateSnake ();
 
 	checkEating ();
+	inGame = checkCollisions ();
 
-	repaint();
+	if (inGame)  repaint();
+	else timer.stop();
+	
+	
 	snake.ALREADY_PRESSED=false;
     }
 
@@ -111,6 +116,21 @@ public class Board extends JPanel implements ActionListener {
 	}
     }
 
+    public boolean checkCollisions (){
+
+	
+	// Collision against the snake
+	Rectangle snake_head = new Rectangle();
+	snake_head.setRect (snake.x, snake.y, grid.getGridSizeX(), grid.getGridSizeY() );
+	if ( snake.headIsIn (snake_head) ) return false;
+
+	// Collision against the border
+	Rectangle border = grid.getBorders();
+	if (!border.contains(snake_head)) return false;
+
+	return true;	
+    }
+    
     
     @Override
     public void paintComponent(Graphics g) {
@@ -118,6 +138,8 @@ public class Board extends JPanel implements ActionListener {
 
 	drawObjects (g);
 
+	drawScore ();
+	
 	Toolkit.getDefaultToolkit().sync();
     }
 
@@ -133,6 +155,13 @@ public class Board extends JPanel implements ActionListener {
 	
     }
 
+    public void drawScore (){
+
+	
+
+	
+	
+    }
 
 
 
