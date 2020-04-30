@@ -23,9 +23,9 @@ public class SnakeBlock extends Sprite {
      *
      * It creates a SnakeBlock at a given position and living in the input grid.
      * 
-     * @params x Horizontal position.
-     * @params y Vertical position.
-     * @params grid Reference to the grid.
+     * @param x Horizontal position.
+     * @param y Vertical position.
+     * @param grid Reference to the grid.
      */
     
     public SnakeBlock (int x, int y, Grid grid){

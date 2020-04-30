@@ -25,9 +25,9 @@ public class Grid {
      *
      * Constructor of the class. It initialise the sizes of windows and segmentation.
      *
-     * @params GRID_SIZE_X Horizontal segmentation size.
-     * @params GRID_SIZE_X Horizontal segmentation size.
-     * @params GRID_SIZE_X Horizontal segmentation size.
+     * @param GRID_SIZE_X Horizontal segmentation size.
+     * @param GRID_SIZE_X Horizontal segmentation size.
+     * @param GRID_SIZE_X Horizontal segmentation size.
      */
 
     public Grid (int seg_x, int seg_y, int window_x, int window_y){
@@ -80,7 +80,7 @@ public class Grid {
     
     /*! \brief Draw the borders of the playground.
      *
-     * @ params g2d Grapics2D instance to draw the 2D rectangle.
+     * @ param g2d Grapics2D instance to draw the 2D rectangle.
      */
 
     public void drawBorders (Graphics2D g2d){
@@ -110,7 +110,7 @@ public class Grid {
 
     /*! \brief Returns the horizontal index in grid segmentations units corresponding to a board coordinate in input.
      *
-     * @params x Input value of boards coordinates
+     * @param x Input value of boards coordinates
      */
 
     public int getGridBinX (int x){
@@ -119,7 +119,7 @@ public class Grid {
 
     /*! \brief Returns the vertical index in grid segmentations units corresponding to a board coordinate in input.
      *
-     * @params x Input value of boards coordinates
+     * @param x Input value of boards coordinates
      */
 
     public int getGridBinY (int y){
@@ -128,7 +128,7 @@ public class Grid {
     
     /*! \brief Returns the horizontal center of grid segmentations units in board coordinates.
      *
-     * @params x Input value of the grid bin
+     * @param x Input value of the grid bin
      */
 
     public int getGridBinCenterX (int x){
@@ -137,7 +137,7 @@ public class Grid {
     
     /*! \brief Returns the vertical center of grid segmentations units in board coordinates.
      *
-     * @params x Input value of the grid bin
+     * @param x Input value of the grid bin
      */
 
     public int getGridBinCenterY (int y){
@@ -146,7 +146,7 @@ public class Grid {
     
     /*! \brief Moves the board horizontal coordinate in input to the center of the grid segmentation .
      *
-     * @params x Input value of board coordinate.
+     * @param x Input value of board coordinate.
      */
 
     public int getGridCenteredX (int x){
@@ -155,7 +155,7 @@ public class Grid {
 
     /*! \brief Moves the board vertical coordinate in input to the center of the grid segmentation .
      *
-     * @params x Input value of board coordinate.
+     * @param x Input value of board coordinate.
      */
 
     public int getGridCenteredY (int y){
@@ -164,7 +164,7 @@ public class Grid {
 
     /*! \brief Returns the horizontal coordinate of the input grid segmentation .
      *
-     * @params x Input value of grid bin index.
+     * @param x Input value of grid bin index.
      */
     
     public int getGridBinEdgeX (int x){
@@ -173,7 +173,7 @@ public class Grid {
 
     /*! \brief Returns the vertical coordinate of the input grid segmentation .
      *
-     * @params x Input value of grid bin index.
+     * @param x Input value of grid bin index.
      */
 
     public int getGridBinEdgeY (int y){
@@ -182,7 +182,7 @@ public class Grid {
 
     /*! \brief Moves the board horizontal coordinate in input to the edge of the grid segmentation .
      *
-     * @params x Input value of board coordinate.
+     * @param x Input value of board coordinate.
      */
 
     public int getGridAtEdgeX (int x){
@@ -191,7 +191,7 @@ public class Grid {
 
     /*! \brief Moves the board vertical coordinate in input to the edge of the grid segmentation .
      *
-     * @params x Input value of board coordinate.
+     * @param x Input value of board coordinate.
      */
 
     public int getGridAtEdgeY (int y){

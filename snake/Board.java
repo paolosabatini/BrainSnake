@@ -99,7 +99,7 @@ public class Board extends JPanel implements ActionListener {
      * In case the game is over, the timer is stopped.
      * The already pressed flag tells whether the action is already busy.
      * 
-     * @params e Action event that is called at each timer clock.
+     * @param e Action event that is called at each timer clock.
      */
     
     @Override
@@ -190,7 +190,7 @@ public class Board extends JPanel implements ActionListener {
      * If the game is going all the objects are drawn with the score as well.
      * If not, "Game Over" is displayed.
      *
-     * @params g Graphics to paint the different objects. 
+     * @param g Graphics to paint the different objects. 
      */
     
     @Override
@@ -218,7 +218,7 @@ public class Board extends JPanel implements ActionListener {
      *        
      * It draws borders, the apple and the snake.
      *
-     * @params g Graphics to paint the different objects. 
+     * @param g Graphics to paint the different objects. 
      */
 
     public void drawObjects (Graphics g){
@@ -234,7 +234,7 @@ public class Board extends JPanel implements ActionListener {
      *        
      * It creates the top-right box and draw the score info. 
      *
-     * @params g2d Graphics2D to paint the different objects. 
+     * @param g2d Graphics2D to paint the different objects. 
      */
 
     public void drawScore (Graphics2D g2d){
@@ -271,7 +271,7 @@ public class Board extends JPanel implements ActionListener {
      *        
      *  "Game Over" is displayed big at the center of the playground. 
      *
-     * @params g Graphics to paint the different objects. 
+     * @param g Graphics to paint the different objects. 
      */
 
     private void drawGameOver(Graphics g) {

@@ -166,7 +166,7 @@ public class Snake extends Sprite {
      *
      * Returns true in case the input rectangle intesects with any of the snake blocs.
      *
-     * @params r Input rectangle under test.
+     * @param r Input rectangle under test.
      */
 
     public boolean isIn (Rectangle r){
@@ -187,7 +187,7 @@ public class Snake extends Sprite {
      *
      * Returns true in case the input rectangle intesects with any of the snake blocs (head excluded).
      *
-     * @params r Input rectangle under test.
+     * @param r Input rectangle under test.
      */
     
     public boolean headIsIn (Rectangle r){
@@ -207,7 +207,7 @@ public class Snake extends Sprite {
 
     /*! \brief Add a new apple to the eaten apple list of the snake.
      *
-     * @params a Apple in input to be added.
+     * @param a Apple in input to be added.
      */
 
     public void addApple (Apple a){
