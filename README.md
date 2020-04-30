@@ -1,6 +1,8 @@
 # BrainSnake
 The project aims to implement the old-fashioned Snake game and train an AI using reinforcement learning to play at it.
 
+https://github.com/paolosabatini/BrainSnake/workflows/Java-CI/badge.svg
+
 ## Structure of the repository
 
 The repository is structured in different directories, containing different parts of the project.
