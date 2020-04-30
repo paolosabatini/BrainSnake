@@ -3,7 +3,7 @@ package ps;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
-/** \brief Main class of the application. 
+/*! \brief Main class of the application. 
  *         It contains the main() function.
  *
  *  The main function instanciates the class. The constructor initialises a new Board, containing most of the code and set the execution exitation, title etc..
@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 public class SnakeApp2D extends JFrame {
 
 
-    /** \brief Constructor.
+    /*! \brief Constructor.
      *
      *  Constructor of the class.
      */
@@ -22,7 +22,7 @@ public class SnakeApp2D extends JFrame {
         initUI();
     }
     
-    /** \brief Initialisation of the UI.
+    /*! \brief Initialisation of the UI.
      *
      *  It creates a new Board, set its size, title and makes the code exit at closing the board.
      */
@@ -39,7 +39,7 @@ public class SnakeApp2D extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }    
         
-    /** \brief Main function of the application.
+    /*! \brief Main function of the application.
      *
      *  It invokes the main function and the queue of events ot be exectued. It creates the SnakeApp2D.
      */

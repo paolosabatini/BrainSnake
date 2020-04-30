@@ -19,7 +19,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 
    
-/* \brief Class containing the code running the application.
+/*! \brief Class containing the code running the application.
  *
  * The board class manages the execution of the whole application. Therefore every object shown and running are members of this class.
  * It extends the JPanel class and implements the ActionLister to listen key pressing.
@@ -50,7 +50,7 @@ public class Board extends JPanel implements ActionListener {
     protected int DELAY = 150; /*!<  Timer period (ms). The higher the slower the snake moves.*/
     protected static boolean VERBOSE = false; /*!<  Flag to enable the verbose output */
 
-    /* \brief Constructor.
+    /*! \brief Constructor.
      *
      * Constructor of the class.
      */
@@ -59,7 +59,7 @@ public class Board extends JPanel implements ActionListener {
 	initBoard ();
     }
     
-    /* \brief Initialisation of the board.
+    /*! \brief Initialisation of the board.
      *
      * It sets up the initial conditions of the game:
      * - Color and size of the board.
@@ -92,7 +92,7 @@ public class Board extends JPanel implements ActionListener {
         timer.start();
     }
     
-     /* \brief Action that is performed at each clock occurrence.
+     /*! \brief Action that is performed at each clock occurrence.
      *
      * It makes the snake move according to the key pressed, checks whether the apple is eaten (in case reproduce the apple).
      * It checks collisions of the snake with borders or itself, update the score and the inGame flag.
@@ -120,7 +120,7 @@ public class Board extends JPanel implements ActionListener {
 	snake.ALREADY_PRESSED=false;
     }
 
-    /* \brief Makes the snake move.
+    /*! \brief Makes the snake move.
      *
      * The snake is moved according to the key pressed. 
      */
@@ -129,7 +129,7 @@ public class Board extends JPanel implements ActionListener {
 	snake.move();
     }
 
-    /* \brief Checks whether the apple is eaten.
+    /*! \brief Checks whether the apple is eaten.
      *
      * In case the head of the snake intersects the apple, another apple is created.
      * The new apple must not be in the snake body. If it is randomly extracted in there, it is extracted again.
@@ -164,7 +164,7 @@ public class Board extends JPanel implements ActionListener {
 	}
     }
 
-    /* \brief Checks the snake collides with borders or itself.
+    /*! \brief Checks the snake collides with borders or itself.
      *
      * It checks whether the snake head intersects the other snake blocks.
      * It checks wehter the snake is fully contained by the borders.
@@ -184,7 +184,7 @@ public class Board extends JPanel implements ActionListener {
 	return true;	
     }
     
-    /* \brief It reimplements the paintComponent method of JPanel.
+    /*! \brief It reimplements the paintComponent method of JPanel.
      *        This is extended to draw also the other objects
      *        
      * If the game is going all the objects are drawn with the score as well.
@@ -214,7 +214,7 @@ public class Board extends JPanel implements ActionListener {
 	Toolkit.getDefaultToolkit().sync();
     }
 
-    /* \brief It draws all the objects needed to the code to run.
+    /*! \brief It draws all the objects needed to the code to run.
      *        
      * It draws borders, the apple and the snake.
      *
@@ -230,7 +230,7 @@ public class Board extends JPanel implements ActionListener {
 	snake.drawSnake ((Graphics2D)g);
     }
 
-    /* \brief It draws the score pad on top-right.
+    /*! \brief It draws the score pad on top-right.
      *        
      * It creates the top-right box and draw the score info. 
      *
@@ -267,7 +267,7 @@ public class Board extends JPanel implements ActionListener {
 		       (int) (0.5*B_HEIGHT*(pad_height_fraction)+ B_HEIGHT*(0.5*pad_offset) ) );
     }
 
-    /* \brief It draws "Game Over" at the end of the game.
+    /*! \brief It draws "Game Over" at the end of the game.
      *        
      *  "Game Over" is displayed big at the center of the playground. 
      *
@@ -286,14 +286,14 @@ public class Board extends JPanel implements ActionListener {
 		     B_HEIGHT / 2);
     }
 
-    /* \brief Class needed to reimplement the KeyAdapter to the game needs.
+    /*! \brief Class needed to reimplement the KeyAdapter to the game needs.
      *        
      * It wants to extend the KeyAdapter class to adapt the snake movement.
      */
 
     private class TAdapter extends KeyAdapter {
 
-	/* \brief Indicates what happens when a key is released.
+	/*! \brief Indicates what happens when a key is released.
 	 *        
 	 * It redirects to the snake action when the key is released.
 	 */
@@ -303,7 +303,7 @@ public class Board extends JPanel implements ActionListener {
 	    snake.keyReleased(e);
         }
 
-	/* \brief Indicates what happens when a key is pressed.
+	/*!\brief Indicates what happens when a key is pressed.
 	 *        
 	 * It redirects to the snake action when the key is pressed.
 	 */
@@ -315,7 +315,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     
-    /* \brief Useful to propagate to the other classes whether the verbose is on/off.
+    /*! \brief Useful to propagate to the other classes whether the verbose is on/off.
      *        
      * Returns the VERBOSE member.
      */
