@@ -10,11 +10,11 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Here is the "build" job
-  BuildAndRun:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:  
-      DISPLAY: ':0'
+    # env:  
+    #  DISPLAY: ':0'
     # Steps to be executed
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
@@ -23,9 +23,9 @@ jobs:
     - name: Compile the java code
       working-directory: ./snake/
       run: javac -d . *.java
-    - name: Run the java code
-      working-directory: ./snake/
-      run: |
-        java ps.SnakeApp2D &
-        sleep 10
-        kill -9 $(pidof java ps.SnakeApp2D)
+    # - name: Run the java code
+    #  working-directory: ./snake/
+    #  run: |
+    #    java ps.SnakeApp2D &
+    #    sleep 10
+    #    kill -9 $(pidof java ps.SnakeApp2D)
