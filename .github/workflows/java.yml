@@ -9,22 +9,31 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # Here is the "build" job
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    # Steps to be executed
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
+    - uses: actions/checkout@v2
+      # Compile the java code, first to be ran
+    - name: Compile the java code
+      working-directory: ./snake/
+      run: javac -d . *.java
+  # Here is the "run" job
+  run:
+    runs-on: ubuntu-latest
+    # It needs the build to be ran to create the executable
+    needs: build
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
-
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    # Runs the application and kill it after 10 seconds
+    - name: Run the java code
+      working-directory: ./snake/
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        java ps.SnakeApp2D &
+        sleep 10
+        kill -9 $(pidof java ps.SnakeApp2D)
