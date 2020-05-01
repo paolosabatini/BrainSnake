@@ -1,7 +1,11 @@
 # BrainSnake
-The project aims to implement the old-fashioned Snake game and train an AI using reinforcement learning to play at it.
+The project aims to implement the old-fashioned Snake game and train an AI using reinforcement learning to play at it. 
 
 ![](https://github.com/paolosabatini/BrainSnake/workflows/Java-CI/badge.svg)
+
+## Documentation
+
+A documentation of the code is auto-generated via `Doxygen` and `TravisCI`, available at this link: ![https://paolosabatini.github.io/BrainSnake/](https://paolosabatini.github.io/BrainSnake/)
 
 ## Structure of the repository
 
