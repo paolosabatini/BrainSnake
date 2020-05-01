@@ -26,8 +26,9 @@ public class Grid {
      * Constructor of the class. It initialise the sizes of windows and segmentation.
      *
      * @param GRID_SIZE_X Horizontal segmentation size.
-     * @param GRID_SIZE_X Horizontal segmentation size.
-     * @param GRID_SIZE_X Horizontal segmentation size.
+     * @param GRID_SIZE_Y Vertical segmentation size.
+     * @param WINDOW_X Horizontal window size.
+     * @param WINDOW_Y Vertical window size.
      */
 
     public Grid (int seg_x, int seg_y, int window_x, int window_y){
