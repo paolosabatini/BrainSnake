@@ -5,7 +5,7 @@ The project aims to implement the old-fashioned Snake game and train an AI using
 
 ## Documentation
 
-A documentation of the code is auto-generated via `Doxygen` and `TravisCI`, available at this link: ![https://paolosabatini.github.io/BrainSnake/](https://paolosabatini.github.io/BrainSnake/)
+A documentation of the code is auto-generated via `Doxygen` and `TravisCI`, available at this link: [https://paolosabatini.github.io/BrainSnake/](https://paolosabatini.github.io/BrainSnake/)
 
 ## Structure of the repository
 
