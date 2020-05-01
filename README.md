@@ -1,11 +1,32 @@
 # BrainSnake
-The project aims to implement the old-fashioned Snake game and train an AI using reinforcement learning to play at it.
+The project aims to implement the old-fashioned Snake game and train an AI using reinforcement learning to play at it. 
+
+![](https://github.com/paolosabatini/BrainSnake/workflows/Java-CI/badge.svg)
+
+## Documentation
+
+A documentation of the code is auto-generated via `Doxygen` and `TravisCI`, available at this link: [https://paolosabatini.github.io/BrainSnake/](https://paolosabatini.github.io/BrainSnake/)
 
 ## Structure of the repository
 
 The repository is structured in different directories, containing different parts of the project.
 - *documentation*: it contains the LaTeX files for the documentation.
 - *snake*: it contains the `java` code of the game
+
+
+## Tips and tricks for running it
+
+### Java code
+
+First of all, the code has to be compiled first, no executable or built files are added to this repository.To compile the code:
+```java
+cd snake/
+javac -d . *.java
+```
+Then, to run it:
+```java
+java ps.SnakeApp2D
+```
 
 ## Authors and references
 
