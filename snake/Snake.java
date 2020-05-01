@@ -10,15 +10,26 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.stream.Collectors;
 
+/*! \brief Class containing all the snake information, extending the Sprite class.
+ *
+ * The snake is not a real sprite, it consist is managing a vector of SnakeBlocks in the movement in the playground.
+ * It implements the rules for being driven by key inputs, movement, collision and eating.
+ */
+
 public class Snake extends Sprite {
 
-    private Color snakeColor = new Color (252, 252, 252);
-    private List<SnakeBlock> blocks;
-    private List<Apple> apples;
-    private ArrayList<Integer> velocity; // [up, left, down, right]
-    Grid grid;
-    public boolean ALREADY_PRESSED = false;
-    
+    private Color snakeColor = new Color (252, 252, 252); /*!< Color of the snake. */
+    private List<SnakeBlock> blocks; /*!< Vector of the SnakeBlocks that makes the snake. */
+    private List<Apple> apples; /*!< List of apples eaten (used to enlarge the snake size when an apple is eaten). */ 
+    private ArrayList<Integer> velocity; /*!< Direction of the snake movemnt: [up, left, down, right] */
+    Grid grid; /*!< Refrence to the grid where the snake lives.*/
+    public boolean ALREADY_PRESSED = false; /*!< Flag that tells whether in the time unit a key command is already stored.*/
+
+    /*! \brief Constructor of the class.
+     *
+     * It sets up the position, grid, initial direction (downwards), initial snake shape (two blocks vertically disposed) and no eaten apples.
+     */
+
     public Snake (int x, int y, Grid grid){
 	super(x,y);
 	this.grid = grid;
@@ -28,6 +39,13 @@ public class Snake extends Sprite {
 	blocks.add (new SnakeBlock (x,y-grid.getGridSizeY(),grid) );
 	apples = new ArrayList<> ();
     }
+
+    
+    /*! \brief Moves the snake.
+     *
+     * Compute the movement of the Snake head based on the pressed keys and update the positions of all the snake blocks.
+     * In case the last block has moved away from the eaten apple position, the snake is enlarged by a new block at the eaten apple position.
+     */
 
     public void move (){
 
@@ -80,8 +98,12 @@ public class Snake extends Sprite {
 		System.out.println ("\t > x "+b.getX()+" y "+b.getY());
 	    }
 	}
-
     }
+
+    /*! \brief Manages the command given by pressing the keys.
+     *
+     * Arrows are used to move up, down, left and right. In case in the time unit a movement is already given, another pressed key is ignored.
+     */
 
     public void keyPressed(KeyEvent e) {
 
@@ -115,12 +137,22 @@ public class Snake extends Sprite {
 	this.ALREADY_PRESSED = true;
     }
 
+    /*! \brief Empty method since no action is required done when the key is released.
+     *
+     * If nothing is pressed the snake still moves in its direction.
+     */
+    
     public void keyReleased(KeyEvent e) {
 
-	// If nothing is pressed the velocity is as before
+	// If nothing is pressed the velocity is as before.
 
     }
-    
+
+    /*! \brief Draws the snake.
+     *
+     * It loops over the vector of blocks and draw them with the dedicatd SnakeBlock command.
+     */
+
     public void drawSnake (Graphics2D g2d){
 
 	for (SnakeBlock b : blocks ){
@@ -128,8 +160,14 @@ public class Snake extends Sprite {
 	    b.drawSnakeBlock(g2d);
 
 	}
-	
     }
+
+    /*! \brief Checks whether the input rectangle intersects with the snake.
+     *
+     * Returns true in case the input rectangle intesects with any of the snake blocs.
+     *
+     * @param r Input rectangle under test.
+     */
 
     public boolean isIn (Rectangle r){
 
@@ -144,7 +182,13 @@ public class Snake extends Sprite {
 	}
 	return isin;
     }
-
+    
+    /*! \brief Checks whether the input rectangle intersects with the snake (head excluded).
+     *
+     * Returns true in case the input rectangle intesects with any of the snake blocs (head excluded).
+     *
+     * @param r Input rectangle under test.
+     */
     
     public boolean headIsIn (Rectangle r){
 
@@ -160,6 +204,11 @@ public class Snake extends Sprite {
 	}
 	return isin;
     }
+
+    /*! \brief Add a new apple to the eaten apple list of the snake.
+     *
+     * @param a Apple in input to be added.
+     */
 
     public void addApple (Apple a){
 	this.apples.add (a);
