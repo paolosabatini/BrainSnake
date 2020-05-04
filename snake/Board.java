@@ -318,7 +318,7 @@ public class Board extends JPanel implements ActionListener {
 	
         @Override
         public void keyReleased(KeyEvent e) {
-	    if (Json.getMode () == "MANUAL") snake.keyReleased(e);
+	    if (Json.getMode ().equals( "MANUAL" )) snake.keyReleased(e);
 	    
 	}
 
@@ -329,7 +329,7 @@ public class Board extends JPanel implements ActionListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-	    if (Json.getMode () == "MANUAL") snake.keyPressed(e);
+	    if (Json.getMode ().equals( "MANUAL" )) snake.keyPressed(e);
 	    else snake.autoPressed (e);
 	}
     }
