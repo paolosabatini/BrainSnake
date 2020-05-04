@@ -27,7 +27,7 @@ jobs:
       run: Xvfb :99 &
     - name: Run the java code
       working-directory: ./snake/
-      run: java -cp .:json-simple-1.1.jar ps.SnakeApp2D 
+      run: java -cp .:json-simple-1.1.jar ps.SnakeApp2D share/CONFIG_MANUAL.json &
     - name: Kill the application after 30s
       run: |
         sleep 30
