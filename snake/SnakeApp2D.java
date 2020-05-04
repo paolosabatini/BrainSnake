@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 public class SnakeApp2D extends JFrame {
 
-    private static String CONFIG_FILE = "CONFIG_MANUAL.json"; /*!< Configuration (json) to read to configure the running. */
+    private static String CONFIG_FILE = "share/CONFIG_MANUAL.json"; /*!< Configuration (json) to read to configure the running. */
     
     /*! \brief Constructor.
      *
