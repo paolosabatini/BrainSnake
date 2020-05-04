@@ -20,14 +20,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
     - uses: actions/checkout@v2
       # Compile the java code, first to be ran
-    - name: Compile the java code
+    - name: Compile the java code (w/ json-simple)
       working-directory: ./snake/
-      run: javac -d . *.java
+      run: javac -cp json-simple-1.1.jar -d . *.java
     - name: Setup headless environment
       run: Xvfb :99 &
     - name: Run the java code
       working-directory: ./snake/
-      run: java ps.SnakeApp2D &
+      run: java -cp .:json-simple-1.1.jar ps.SnakeApp2D share/CONFIG_MANUAL.json &
     - name: Kill the application after 30s
       run: |
         sleep 30
