@@ -18,14 +18,14 @@ The repository is structured in different directories, containing different part
 
 ### Java code
 
-First of all, the code has to be compiled first, no executable or built files are added to this repository.To compile the code:
+First of all, the code has to be compiled first, no executable or built files are added to this repository. The code now rely on `json-simple` package from [here](https://code.google.com/archive/p/json-simple/). To compile the code you need to include the unzipped `jar` from the download. In case you move the `json-simple-1.1.jar` in the `snake/` directory:
 ```java
 cd snake/
-javac -d . *.java
+javac -cp json-simple-1.1.jar -d . *.java
 ```
 Then, to run it:
 ```java
-java ps.SnakeApp2D
+java -cp .:json-simple-1.1.jar ps.SnakeApp2D
 ```
 
 ## Authors and references

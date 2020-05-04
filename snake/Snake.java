@@ -24,7 +24,7 @@ public class Snake extends Sprite {
     private ArrayList<Integer> velocity; /*!< Direction of the snake movemnt: [up, left, down, right] */
     Grid grid; /*!< Refrence to the grid where the snake lives.*/
     public boolean ALREADY_PRESSED = false; /*!< Flag that tells whether in the time unit a key command is already stored.*/
-
+    
     /*! \brief Constructor of the class.
      *
      * It sets up the position, grid, initial direction (downwards), initial snake shape (two blocks vertically disposed) and no eaten apples.
@@ -47,9 +47,11 @@ public class Snake extends Sprite {
      * In case the last block has moved away from the eaten apple position, the snake is enlarged by a new block at the eaten apple position.
      */
 
-    public void move (){
+    public void move (String mode, Apple apple){
 
+	if (mode != "MANUAL") autoMove(mode, apple);
 
+	
 	int dx = ( - velocity.get(1) + velocity.get(3) ) * grid.getGridSizeX();
 	int dy = ( - velocity.get(0) + velocity.get(2) ) * grid.getGridSizeY();
 	
@@ -104,7 +106,7 @@ public class Snake extends Sprite {
      *
      * Arrows are used to move up, down, left and right. In case in the time unit a movement is already given, another pressed key is ignored.
      */
-
+    
     public void keyPressed(KeyEvent e) {
 
 	if (this.ALREADY_PRESSED)
@@ -139,6 +141,17 @@ public class Snake extends Sprite {
 
     /*! \brief Empty method since no action is required done when the key is released.
      *
+     * Nothing has to be done if auto is selected
+     */
+    
+    public void autoPressed(KeyEvent e) {
+
+	// If auto selected, the velocity is as before.
+
+    }
+
+    /*! \brief Empty method since no action is required done when the key is released.
+     *
      * If nothing is pressed the snake still moves in its direction.
      */
     
@@ -148,6 +161,31 @@ public class Snake extends Sprite {
 
     }
 
+    /*! \brief Empty method since no action is required done when the key is released.
+     *
+     * Nothing has to be done if auto is selected
+     */
+    
+    public void autoReleased(KeyEvent e) {
+
+	// If nothing is pressed the velocity is as before.
+
+    }
+
+    
+    /*! \brief Auto moving: it means that keys are neglected, the movements are computed.
+     *
+     * One can choose which policy to use to move the snake.
+     */
+    
+    public void autoMove(String mode, Apple apple) {
+	System.out.println (mode+" "+(mode.equals( "BENCHMARK" )));
+	if (mode.equals( "BENCHMARK" )) {
+	    this.velocity = Model.moveBenchmark (x,y, blocks, velocity, apple, grid);
+	}
+	
+     }
+    
     /*! \brief Draws the snake.
      *
      * It loops over the vector of blocks and draw them with the dedicatd SnakeBlock command.

@@ -11,14 +11,16 @@ import javax.swing.JFrame;
 
 public class SnakeApp2D extends JFrame {
 
-
+    private static String CONFIG_FILE = "CONFIG_MANUAL.json"; /*!< Configuration (json) to read to configure the running. */
+    
     /*! \brief Constructor.
      *
-     *  Constructor of the class.
+     *  Constructor of the class. Initialise the configuratio file to read.
      */
 
-    public SnakeApp2D() {
+    public SnakeApp2D(String conf_filename) {
 
+	CONFIG_FILE = conf_filename;
         initUI();
     }
     
@@ -29,7 +31,7 @@ public class SnakeApp2D extends JFrame {
 
     private void initUI() {
 
-        add(new Board());
+        add(new Board(CONFIG_FILE));
 
 	setResizable(false);
 	pack();
@@ -45,10 +47,10 @@ public class SnakeApp2D extends JFrame {
      */
 
     public static void main(String[] args) {
-        
-        EventQueue.invokeLater(() -> {
-            SnakeApp2D ex = new SnakeApp2D();
-            ex.setVisible(true);
-        });
+
+	EventQueue.invokeLater(() -> {
+		SnakeApp2D ex = (args.length != 0) ? new SnakeApp2D((String)args[0]) : new SnakeApp2D(CONFIG_FILE);
+		ex.setVisible(true);
+	    });
     }
 }

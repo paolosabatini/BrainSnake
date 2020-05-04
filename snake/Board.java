@@ -17,6 +17,8 @@ import java.util.Random;
 import java.awt.Rectangle;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.io.FileReader; 
+import java.io.FileNotFoundException;
 
    
 /*! \brief Class containing the code running the application.
@@ -31,6 +33,7 @@ public class Board extends JPanel implements ActionListener {
     private Apple apple; /*!< Instance of the apple */
     private Grid grid;  /*!< Instance of the grid */
     private Timer timer; /*!< Instance of the timer */
+    private JsonHandler Json; /*!< Instance of the Json handler.*/
     
     protected int IAPPLE_X = 200; /*!< Initial horizontal position of the apple */
     protected int IAPPLE_Y = 200; /*!< Initial vertical position of the apple */
@@ -53,10 +56,24 @@ public class Board extends JPanel implements ActionListener {
     /*! \brief Constructor.
      *
      * Constructor of the class.
+     *
+     * @param json_filename Name of the json file to read
      */
     
-    public Board () {
+    public Board (String json_filename) {
+	initJson (json_filename);
 	initBoard ();
+    }
+
+    /*! \brief Initilise the Json reader
+     *
+     * Initialise the json reader to handle the configuration of the code.
+     *
+     * @param json_filename Name of the json file to read
+     */
+    
+    public void initJson (String json_filename) {
+	Json = new JsonHandler (json_filename);
     }
     
     /*! \brief Initialisation of the board.
@@ -126,7 +143,8 @@ public class Board extends JPanel implements ActionListener {
      */
 
     public void updateSnake (){
-	snake.move();
+	snake.move( Json.getMode(),
+		    apple);
     }
 
     /*! \brief Checks whether the apple is eaten.
@@ -297,11 +315,12 @@ public class Board extends JPanel implements ActionListener {
 	 *        
 	 * It redirects to the snake action when the key is released.
 	 */
-
+	
         @Override
         public void keyReleased(KeyEvent e) {
-	    snake.keyReleased(e);
-        }
+	    if (Json.getMode () == "MANUAL") snake.keyReleased(e);
+	    
+	}
 
 	/*!\brief Indicates what happens when a key is pressed.
 	 *        
@@ -310,8 +329,9 @@ public class Board extends JPanel implements ActionListener {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            snake.keyPressed(e);
-        }
+	    if (Json.getMode () == "MANUAL") snake.keyPressed(e);
+	    else snake.autoPressed (e);
+	}
     }
 
     
